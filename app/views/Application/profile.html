@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+    <title>Profile - MonumentFinder</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="@{'/public/stylesheets/bootstrap.css'}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="@{'/public/stylesheets/album.css'}"rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">MonumentFinder</h4>
+              <p class="text-muted">MonumentFinder helps you find the monuments that you will love around the area you are visiting. 
+			  Use it to plan your trips, to discover new cities, or even rediscover your very own hometown. 
+			  Select the monuments, visit them, like them, leave some comments... love the city!</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="mailto:ramon@rgalarcia.com" class="text-white">Send us an email</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <strong>MonumentFinder</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Welcome, ${username}</h1>
+          <p class="lead text-muted">These are the monuments near you that we have selected according to your preferences. Your current choice is: <strong>${param}</strong></p>
+          <p>
+            <a href="#" onclick="getLocation()" class="btn btn-primary my-2">Update my location</a>
+            <a href="/Application/logout" class="btn btn-secondary my-2">Log out</a>
+          </p>
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row row-no-margin">
+			<div class="containerfotos">
+  
+			</div>
+		  </div>
+		</div>
+      </div>
+
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>© MonumentFinder 2018</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="@{'/public/js/jquery-3.js'}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="@{'/public/js/popper.js'}"></script>
+    <script src="@{'/public/js/bootstrap.js'}"></script>
+    <script src="@{'/public/js/holder.js'}"></script>
+    <script src="Album%20example%20for%20Bootstrap_files/holder.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+	<script>
+	$.getJSON( "api?param=${param}", function( data ) {
+	
+	  var items = [];
+	  $.each( data, function( key, val ) {
+		items.push("<div class=\"card mb-4 shadow-sm\">");
+		items.push("<img class=\"card-img-top\" data-src=\"");
+		items.push(val["imageurl"]);
+		items.push("\" alt=\"Thumbnail [100%x225]\" style=\"height: 225px; width: 100%; display: block;\" src=\"");
+		items.push(val["imageurl"]);
+		items.push("\"(data-holder-rendered=\"true\">");
+		items.push("<div class=\"card-body\">");
+		items.push("<p class=\"card-text\">");
+		items.push(val["name"]);
+		items.push("</p>");
+        items.push("<div class=\"d-flex justify-content-between align-items-center\">");
+		items.push("<div class=\"btn-group\">");
+		items.push("<button type=\"button\" class=\"btn btn-sm btn-outline-secondary\" data-toggle=\"modal\" data-target=\"#exampleModal");
+		items.push(key);
+		items.push("\">More</button>");
+		items.push("</div>");
+		items.push("<small class=\"text-muted\">"+val["lat"]+"ºN, "+val["lon"]+"ºE</small>");
+		items.push("</div>");
+		items.push("</div>");
+		items.push("</div>");
+		
+		items.push("<div class=\"modal fade\" id=\"exampleModal");
+		items.push(key);
+		items.push("\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">");
+		items.push("<div class=\"modal-dialog\" role=\"document\">");
+		items.push("<div class=\"modal-content\">");
+		items.push("<div class=\"modal-header\">");
+		items.push("<h5 class=\"modal-title\" id=\"exampleModalLabel\">");
+		items.push(val["name"]);
+		items.push("</h5>");
+		items.push("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">");
+		items.push("<span aria-hidden=\"true\">&times;</span>");
+		items.push("</button>");
+		items.push("</div>");
+		items.push("<div class=\"modal-body\">");
+		items.push(val["description"]);
+		items.push("</div>");
+		items.push("<div class=\"modal-footer\">");
+		items.push("<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>");
+		items.push("<button type=\"button\" class=\"btn btn-primary\">Leave a comment</button>");
+		items.push("</div>");
+		items.push("</div>");
+		items.push("</div>");
+		items.push("</div>");
+	  });
+	
+	  $( "<div>", {
+		"class": "containerfotos",
+		html: items.join( "" )
+	  }).appendTo( ".containerfotos" );
+	});
+	
+	function getLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} else {
+			alert("Geolocation is not supported by this browser.");
+		}
+	}
+	
+	function showPosition(position) {
+		var x = "Latitude: " + position.coords.latitude + 
+		"<br>Longitude: " + position.coords.longitude;
+		alert(x);
+	}
+	</script>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="17" style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text></svg></body></html>

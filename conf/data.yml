@@ -1,0 +1,267 @@
+#Cities
+
+models.City(BCN):
+  name: Barcelona
+
+models.City(MDR):
+  name: Madrid
+
+# Monuments
+models.Monument(sf):
+  name: Sagrada Familia
+  lat: 41.40347
+  lon: 2.17440
+  cat: building
+  param: Cult
+  city: BCN
+  description: The Sagrada Familia is a large unfinished Roman Catholic church in Barcelona, designed by Spanish architect Antoni Gaudí (1852–1926). It combines both Gothic and curvilinear Art Nouveau forms.
+  imageurl: https://www.livingtours.com/media/catalog/product/cache/2/image/830x545/17f82f742ffe127f42dca9de82fb58b1/s/a/sagrada-familia-cathedral-tour.jpg
+
+
+models.Monument(casabatllo):
+  name: Casa Batlló
+  lat: 41.39517
+  lon: 2.1648
+  cat: building
+  param: Sightseeing
+  city: BCN
+  description: Casa Batllò is a building in the center of Barcelona. It was designed by Antoni Gaudí, and is considered one of his masterpieces.The local name for the building is Casa dels ossos (House of Bones), as it has a visceral, skeletal organic quality.
+  imageurl: https://images.musement.com/cover/0002/34/thumb_133624_cover_header.jpeg
+  #lmonuments: [sf, cb]
+
+models.Monument(pedrera):
+    name: Pedrera
+    lat: 41.39541
+    lon: 2.16194
+    cat: building
+    param: Sightseeing
+    city: BCN
+    description: Casa Milà, popularly known as La Pedrera or "The stone quarry", is a modernist building in Barcelona. It was the last private residence designed by architect Antoni Gaudí and was built between 1906 and 1912.
+    imageurl: http://www.yourguidebarcelona.com/wmContent/Contenido/Barcelona-modernista.jpg
+
+models.Monument(parcguell):
+    name: Parc Güell
+    lat: 41.41410
+    lon: 2.15255
+    cat: park
+    param: Sightseeing
+    city: BCN
+    description: The Park Güell is a public park system composed of gardens and architectonic elements located on Carmel Hill, in Barcelona, Catalonia, Spain. It was designed by Antoni Gudí.
+    imageurl: http://blog.ghatapartments.com/wp-content/uploads/2013/07/Parque-Guell.jpg
+
+models.Monument(fontMontjuic):
+    name: Font Màgica de Montjuïc
+    lat: 41.37116
+    lon: 2.15174
+    cat: fountain
+    param: Sightseeing
+    city: BCN
+    description: The Magic Fountain of Montjuïc was constructed for the 1929 Barcelona International Exposition. It is called Magic Fountain because music was incorporated with the light show and the fountain for the 1992 Sumer olympics, adn the result was 'magical'.
+    imageurl: https://cdn02.tresc.cat/media/fitxes/31260/01_003_00124394/shutterstock_10420342_1.jpg
+
+models.Monument(miradorColon):
+    name: Mirador de Colom
+    lat: 41.37578
+    lon: 2.17776
+    cat: statue
+    param: Sightseeing
+    city: BCN
+    description: The Columbus Monument is a 60 m (197 ft) tall monument to Christopher Columbus at the lower end of La Rambla, Barcelona. It was constructed for the Exposición Universal de Barcelona (1888) in honor of Columbus' first voyage to the Americas.
+    imageurl: https://cdn02.visitbarcelona.com/files/5531-4662-imagenCAT/BarcelonaColom-T24-a_O.jpg
+
+
+
+models.Monument(museoArteCont):
+    name: Museu d'Art Contemporani de  Barcelona
+    lat: 41.38310
+    lon: 2.16676
+    cat: museum
+    param: Culture
+    city: BCN
+    description: The Barcelona Museum of Contemporary Art (abbreviated as MACBA) is dedicated to artworks from the second half of the second half of the XX centyry.
+    imageurl: https://www.metropoliabierta.com/uploads/s1/33/36/16/macba0.jpeg
+
+
+models.Monument(torresVenec):
+    name: Torres Venecianes
+    lat: 41.37397
+    lon: 2.14962
+    cat: building
+    param: Sightseeing
+    city: BCN
+    description: The Venetian Towers is the popular name for a pair of towers on Barcelona. The towers are 47m high, with a 7.2 metres square cross-section. They were modelled on the campanile of St. Mark's Basilica in Venice.
+    imageurl: https://www.lavanguardia.com/r/GODO/LV/p3/WebSite/2016/10/13/Recortada/img_jalbarran_20161013-194627_imagenes_lv_otras_fuentes_torres_venecianes1-k0dC--656x405@LaVanguardia-Web.jpg
+
+models.Monument(monumPlazaBraus):
+    name: La Monumental, Plaça de Braus
+    lat: 41.40007
+    lon: 2.18122
+    cat: museum
+    param: Culture
+    city: BCN
+    description: The Plaza Monumental de Barcelona, often known simply as La Monumental, is a bullring in the city of Barcelona, Spain. It was the last place in Catalonia where bullfights were held.
+    imageurl: https://estaticos.elperiodico.com/resources/jpg/6/3/1471001492936.jpg
+
+
+models.Monument(catedralBcn):
+    name: Catedral de Barcelona
+    lat: 41.38093
+    lon: 2.12291
+    cat: building
+    param: Cult
+    city: BCN
+    description: The Cathedral of the Holy Cross and Saint Eulalia, also known as Barcelona Cathedral, is the Gothic cathedral and seat of the Archbishop of Barcelona, Spain constructed between the thirteenth and fifteenth centuries
+    imageurl: https://barcelonando.com/es/wp-content/uploads/2012/10/catedral-de-barcelona.jpg
+
+models.Monument(campNou):
+    name: Camp Nou
+    lat: 41.38093
+    lon: 2.12291
+    cat: building
+    param: Sports
+    city: BCN
+    description: Camp Nou ("new field", often referred to as the Nou Camp in English) is the home stadium of FC Barcelona since its completion in 1957.
+    imageurl: https://cf-r.365ticketsglobal.com/resized/486x324/2935-nou_camp_fc_barcelona.jpg
+
+
+models.Monument(CastellMontjuic):
+    name: Castell de Montjuïc
+    lat: 41.36332
+    lon: 2.12291
+    cat: building
+    param: Cult
+    city: BCN
+    description: Montjuïc Castle is an old military fortress, with roots dating back from 1640, built on top of Montjuïc hill. It currently serves as a Barcelona municipal facility.
+    imageurl: https://cloud10.todocoleccion.online/postales-cataluna/tc/2011/01/29/24366302.jpg
+
+models.Monument(EstadiLluisComp):
+    name: Estadi Olímpic Lluís Companys
+    lat: 41.36472
+    lon: 2.15565
+    cat: building
+    param: Sports
+    city: BCN
+    description: Estadi Olímpic Lluís Companys is a stadium in Barcelona, Catalonia, Spain. Originally built in 1927 for the 1929 International Exposition in the city , it was renovated in 1989 to be the main stadium for the 1992 Summer Olympics.
+    imageurl: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Estadi_Ol%C3%ADmpic_Llu%C3%ADs_Companys.JPG/245px-Estadi_Ol%C3%ADmpic_Llu%C3%ADs_Companys.JPG
+
+models.Monument(piscibp):
+    name: Piscines Bernat Picornell
+    lat: 41.36569
+    lon: 2.15072
+    cat: building
+    param: Sports
+    city: BCN
+    description: Piscines Bernat Picornell is a swimming venue situated in the Olympic Ring in Montjuïc, Barcelona. The venue consists of three swimming pools. It hosted the swimming events for the 1992 Summer Olympics.
+    imageurl: https://media-edg.barcelona.cat/wp-content/uploads/2014/06/Foto-piscina-Bernat-Picornell-760x428.jpg
+
+models.Monument(ttelecomColls):
+    name: Torre de Telecomunicacions de Collserola
+    lat: 41.41727
+    lon: 2.11427
+    cat: building
+    param: Science
+    city: BCN
+    description: Torre de Collserola is a uniquely designed tower located on the Tibidabo hill in the Serra de Collserola, in Barcelona built in 1991 for the 1992 Summer Olympics.
+    imageurl: https://media-edg.barcelona.cat/wp-content/uploads/2017/10/04141235/Collserola_Tavisa-760x428.jpg
+
+
+models.Monument(obsFabra):
+    name: Observatori Fabra
+    lat: 41.41842
+    lon: 2.12405
+    cat: building
+    param: Science
+    city: BCN
+    description: The Fabra Observatory is an astronomical observatory located in Barcelona. Its main activity is the study of asteroids and comets. It is the fourth most ancient observatory in the world that is still functioning.
+    imageurl: https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Observatori_Fabra_-_Vista_des_del_Tibidabo_-_1.jpg/300px-Observatori_Fabra_-_Vista_des_del_Tibidabo_-_1.jpg
+
+models.Monument(parcTibid):
+    name: Parc del Tibidabo
+    lat: 41.42258
+    lon: 2.12005
+    cat: theme park
+    param: Entretainment
+    city: BCN
+    description: Tibidabo Amusement Park is an amusement park located on Tibidabo in the Collserola Ridge in Barcelona. The park was built in 1899. The park is among the oldest in the world still functioning.
+    imageurl: https://www.globo-rojo.com/wp-content/uploads/BLOG-Tibidabo1.jpg
+
+models.Monument(palauSJ):
+    name: Palau Sant Jordi
+    lat: 41.36347
+    lon: 2.15357
+    cat: building
+    param: Entretainment
+    city: BCN
+    description: Palau Sant Jordi ("St. George's Palace") is an indoor sporting arena and multi-purpose installation that is part of the Olympic Ring complex located in Barcelona.
+    imageurl: https://www.palausantjordi.cat/typo3temp/yag/28/Panoramica_interior_event_Palau_Sant_Jordi_2801_560d7f10de5.jpg
+
+models.Monument(MNAC):
+    name: Museu Nacional d'Art de Catalunya
+    lat: 41.36840
+    lon: 2.15342
+    cat: museum
+    param: Culture
+    city: BCN
+    description: The National Art Museum of Catalonia is a museum especially notable for its outstanding collection of romanesque church paintings and Catalan art and design from the late 19th and early 20th centuries, including modernisme and noucentisme.
+    imageurl: https://media-cdn.tripadvisor.com/media/photo-s/06/31/16/43/museu-nacional-d-art.jpg
+
+models.Monument(CosmoCx):
+    name: CosmoCaixa
+    lat: 41.41309
+    lon: 2.13142
+    cat: museum
+    param: Science
+    city: BCN
+    description: CosmoCaixa Barcelona is a science museum. Formerly known as the Science Museum of Barcelona. The museum features a variety of exhibitions that showcase the environment, nature, science, and space.
+    imageurl: https://www.lavanguardia.com/r/GODO/LV/p4/WebSite/2017/10/27/Recortada/img_evelasco_20171027-170709_imagenes_lv_propias_evelasco_dsc_0226-kj2G-U432391671225s7C-992x558@LaVanguardia-Web.JPG
+
+models.Monument(CxForum):
+    name: CaixaForum
+    lat: 41.37148
+    lon: 2.14972
+    cat: museum
+    param: Culture
+    city: BCN
+    description: CaixaForum Barcelona is an art gallery in Barcelona, Catalonia, Spain. CaixaForum is located in the Montjuïc area
+    imageurl: http://masdearte.com/media/g_CaixaforumBarcelona.jpg
+
+models.Monument(tcMontjuic):
+    name: Torre de Comunicacions de Montjuïc
+    lat: 41.36428
+    lon: 2.15061
+    cat: building
+    param: Sightseeing
+    city: BCN
+    description: The Montjuïc Communications Tower is a telecommunication tower in the Montjuïc neighborhood. It was designed by Santiago Calatrava. It was built in order to transmit television coverage of the 1992 Summer Olympic Games in Barcelona.
+    imageurl: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Torre_de_comunicacions_de_Montju%C3%AFc.jpg/800px-Torre_de_comunicacions_de_Montju%C3%AFc.jpg
+
+
+# Users
+
+models.User(ramon):
+  username: ramon
+  email: ramon@gmail.com
+  password: r
+  mobil: 123456789
+  gustos: Sightseeing
+  #lmonuments: [sf, cb]
+
+models.User(isa):
+   username: isabel
+   email: isabel@gmail.com
+   password: i
+   mobil: 123451789
+   gustos: Science
+   #lmonuments: [sf, cb]
+
+models.User(marti):
+  username: martí
+  email: martí@gmail.com
+  password: m
+  mobil: 123473789
+  gustos: Sports
+  #lmonuments: [sf, cb]
+
+
+
+
