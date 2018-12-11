@@ -12,7 +12,8 @@ GET     /favicon.ico                            404
 GET     /public/                                staticDir:public
 
 GET      /Android                               Application.AndroidLogin
-GET     /AndroidProfile                         Application.api
+GET      /AndroidProfile                        Application.profileAndroid
+GET      /AndroidProfileLoad                    Application.api
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

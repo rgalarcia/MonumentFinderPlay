@@ -255,8 +255,8 @@ models.User(isa):
    #lmonuments: [sf, cb]
 
 models.User(marti):
-  username: martí
-  email: martí@gmail.com
+  username: marti
+  email: marti@gmail.com
   password: m
   mobil: 123473789
   gustos: Sports

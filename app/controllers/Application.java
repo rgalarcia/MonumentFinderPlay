@@ -1,5 +1,7 @@
 package controllers;
 
+import groovy.json.internal.JsonParserUsingCharacterSource;
+import groovy.json.internal.JsonStringDecoder;
 import org.junit.Test;
 import play.*;
 import play.mvc.*;
@@ -27,6 +29,13 @@ public class Application extends Controller {
         User us = User.find("byUsername", username).first();
         String param = us.gustos;
         render(username, param);
+    }
+
+    public static void profileAndroid(String u){
+
+        User us = User.find("byUsername", u).first();
+        String param = us.gustos;
+        renderJSON(param);
     }
 
     public static void api(String param){
