@@ -106,15 +106,19 @@ public class Application extends Controller {
             List<User> usersList = User.find("byUsername", u).fetch();
 
             if (usersList.size() == 0) {
-                int count = StringUtils.countMatches(g, ",");
+                if (m != null) {
+                    int count = StringUtils.countMatches(g, ",");
 
-                if (count != 0) {
-                    g = g.replaceAll("\\s+", "");
-                    User us = new User(u, e, p, m, g).save();
-                    us.save();
+                    if (count != 0) {
+                        g = g.replaceAll("\\s+", "");
+                        User us = new User(u, e, p, m, g).save();
+                        us.save();
+                    } else {
+                        User us = new User(u, e, p, m, g).save();
+                        us.save();
+                    }
                 } else {
-                    User us = new User(u, e, p, m, g).save();
-                    us.save();
+                    index("ERROR: Mobile phone is probably too large (max. 9 digits).");
                 }
 
                 index("Registered correctly. :)");
@@ -127,20 +131,24 @@ public class Application extends Controller {
             if (us == null) {
                 account("ERROR: Username and password do not match. :(", u);
             } else {
-                int count = StringUtils.countMatches(g, ",");
+                if (m != null) {
+                    int count = StringUtils.countMatches(g, ",");
 
-                if (count != 0) {
-                    g = g.replaceAll("\\s+", "");
+                    if (count != 0) {
+                        g = g.replaceAll("\\s+", "");
+                    }
+
+                    us.username = u;
+                    us.email = e;
+                    us.password = np;
+                    us.mobil = m;
+                    us.gustos = g;
+                    us.save();
+
+                    index("User data has been updated. Please log in again. :)");
+                } else {
+                    account("ERROR: Mobile phone is probably too large (max. 9 digits).", u);
                 }
-
-                us.username = u;
-                us.email = e;
-                us.password = np;
-                us.mobil = m;
-                us.gustos = g;
-                us.save();
-
-                index("User data has been updated. Please log in again. :)");
             }
 
         }
