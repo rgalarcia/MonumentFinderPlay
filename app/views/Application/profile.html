@@ -5,15 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+    <link rel="icon" href="@{'/public/images/icons/favicon.ico'}">
 
     <title>Profile - MonumentFinder</title>
 
     <!-- Bootstrap core CSS -->
     <link href="@{'/public/stylesheets/bootstrap.css'}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
     <link href="@{'/public/stylesheets/album.css'}"rel="stylesheet">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="http://www.cssscript.com/wp-includes/css/sticky.css" rel="stylesheet" type="text/css">
+    <style>
+        .iframe-rwd  {
+            position: relative;
+            padding-bottom: 65.25%;
+            padding-top: 30px;
+            height: 0;
+            overflow: hidden;
+        }
+        .iframe-rwd iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+	</style>
   </head>
 
   <body>
@@ -52,22 +71,29 @@
     <main role="main">
 
       <section class="jumbotron text-center">
+          <div class="bg"></div>
         <div class="container">
-          <h1 class="jumbotron-heading">Welcome, ${username}</h1>
-          <p class="lead text-muted">These are the monuments near you that we have selected according to your preferences. Your current choice is: <strong>${param}</strong></p>
-          <p>
-            <a href="#" onclick="getLocation()" class="btn btn-primary my-2">Update my location</a>
-            <a href="/Application/logout" class="btn btn-secondary my-2">Log out</a>
+            <h1 class="text-white">Welcome, ${username}</h1><br>
+          <p class="lead text-light">These are the monuments near you that we have selected according to your preferences. Your current choice is: <strong>${param}</strong></p>
+			<div class="geolocation">
+
+			</div>
+			<p>
+                <a href="#" onclick="getLocation()" class="btn btn-primary my-2">Update location</a>
+                <a href="/Application/account?username=${username}" class="btn btn-secondary my-2">My account</a>
+                <a href="/Application/logout" class="btn btn-secondary my-2">Log out</a>
           </p>
         </div>
       </section>
-
       <div class="album py-5 bg-light">
         <div class="container">
           <div class="row row-no-margin">
-			<div class="containerfotos">
+			  <div class="containerfotosliked">
   
-			</div>
+			  </div>
+              <div class="containerfotos">
+                  <h3>Monuments that match your preferences:</h3><p></p>
+              </div>
 		  </div>
 		</div>
       </div>
@@ -79,91 +105,273 @@
         <p class="float-right">
           <a href="#">Back to top</a>
         </p>
-        <p>© MonumentFinder 2018</p>
+        <p>© MonumentFinder 2019</p>
       </div>
     </footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="@{'/public/js/jquery-3.js'}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="@{'/public/js/jquery-3.js'}" integrity="sha256-w/K14c9es++XoHzIMaMmA0G6Ea9ndjvAXvPp5V26jB8=" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="@{'/public/js/popper.js'}"></script>
     <script src="@{'/public/js/bootstrap.js'}"></script>
     <script src="@{'/public/js/holder.js'}"></script>
-    <script src="Album%20example%20for%20Bootstrap_files/holder.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 	<script>
+	var globaldata;
+	var sizedata;
+
 	$.getJSON( "api?param=${param}", function( data ) {
-	
-	  var items = [];
-	  $.each( data, function( key, val ) {
-		items.push("<div class=\"card mb-4 shadow-sm\">");
-		items.push("<img class=\"card-img-top\" data-src=\"");
-		items.push(val["imageurl"]);
-		items.push("\" alt=\"Thumbnail [100%x225]\" style=\"height: 225px; width: 100%; display: block;\" src=\"");
-		items.push(val["imageurl"]);
-		items.push("\"(data-holder-rendered=\"true\">");
-		items.push("<div class=\"card-body\">");
-		items.push("<p class=\"card-text\">");
-		items.push(val["name"]);
-		items.push("</p>");
-        items.push("<div class=\"d-flex justify-content-between align-items-center\">");
-		items.push("<div class=\"btn-group\">");
-		items.push("<button type=\"button\" class=\"btn btn-sm btn-outline-secondary\" data-toggle=\"modal\" data-target=\"#exampleModal");
-		items.push(key);
-		items.push("\">More</button>");
-		items.push("</div>");
-		items.push("<small class=\"text-muted\">"+val["lat"]+"ºN, "+val["lon"]+"ºE</small>");
-		items.push("</div>");
-		items.push("</div>");
-		items.push("</div>");
-		
-		items.push("<div class=\"modal fade\" id=\"exampleModal");
-		items.push(key);
-		items.push("\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">");
-		items.push("<div class=\"modal-dialog\" role=\"document\">");
-		items.push("<div class=\"modal-content\">");
-		items.push("<div class=\"modal-header\">");
-		items.push("<h5 class=\"modal-title\" id=\"exampleModalLabel\">");
-		items.push(val["name"]);
-		items.push("</h5>");
-		items.push("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">");
-		items.push("<span aria-hidden=\"true\">&times;</span>");
-		items.push("</button>");
-		items.push("</div>");
-		items.push("<div class=\"modal-body\">");
-		items.push(val["description"]);
-		items.push("</div>");
-		items.push("<div class=\"modal-footer\">");
-		items.push("<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>");
-		items.push("<button type=\"button\" class=\"btn btn-primary\">Leave a comment</button>");
-		items.push("</div>");
-		items.push("</div>");
-		items.push("</div>");
-		items.push("</div>");
-	  });
-	
-	  $( "<div>", {
-		"class": "containerfotos",
-		html: items.join( "" )
-	  }).appendTo( ".containerfotos" );
-	});
-	
+
+        globaldata = data;
+	    sizedata = data.length;
+		var items1 = [];
+		var items2 = [];
+		var counter = 0;
+		var counterliked = 0;
+
+        function compare(a,b) {
+            if (a.name < b.name)
+                return -1;
+            if (a.name > b.name)
+                return 1;
+            return 0;
+        }
+
+        globaldata.sort(compare);
+
+	  $.each( globaldata, function( key, val ) {
+	      var isliked = 0;
+
+          $.get( "isliked?usr=${username}&mon="+val["name"], function( data ) {
+              isliked = data;
+              if (isliked == 1){
+                  //console.log("Is liked");
+                  items1.push("<div class=\"card mb-4 shadow-sm\">");
+                  items1.push("<img class=\"card-img-top\" data-src=\"");
+                  items1.push(val["imageurl"]);
+                  items1.push("\" alt=\"Thumbnail [100%x225]\" style=\"height: 225px; width: 100%; display: block;\" src=\"");
+                  items1.push(val["imageurl"]);
+                  items1.push("\"(data-holder-rendered=\"true\">");
+                  items1.push("<div class=\"card-body\">");
+                  items1.push("<p class=\"card-text\">");
+                  items1.push(val["name"]);
+                  items1.push("</p>");
+                  items1.push("<div class=\"d-flex justify-content-between align-items-center\">");
+                  items1.push("<div class=\"btn-group\">");
+                  items1.push("<button type=\"button\" class=\"btn btn-sm btn-outline-secondary\" data-toggle=\"modal\" data-target=\"#exampleModal");
+                  items1.push(key);
+                  items1.push("\">Show info</button><br>");
+                  items1.push("</div>");
+                  items1.push("<a class=\"btn\" href=\"dislikemonument?usr=${username}&mon="+val["name"]+"\"><i class=\"fas fa-heart\"></i></a>");
+                  items1.push("<small class=\"text-muted\" id=\"distance"+key+"\">"+val["lat"]+"ºN, "+val["lon"]+"ºE</small>");
+                  items1.push("</div>");
+                  items1.push("</div>");
+                  items1.push("</div>");
+
+                  items1.push("<div class=\"modal fade\" id=\"exampleModal");
+                  items1.push(key);
+                  items1.push("\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">");
+                  items1.push("<div class=\"modal-dialog\" role=\"document\">");
+                  items1.push("<div class=\"modal-content\">");
+                  items1.push("<div class=\"modal-header\">");
+                  items1.push("<h5 class=\"modal-title\" id=\"exampleModalLabel\">");
+                  items1.push(val["name"]);
+                  items1.push("</h5>");
+                  items1.push("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">");
+                  items1.push("<span aria-hidden=\"true\">&times;</span>");
+                  items1.push("</button>");
+                  items1.push("</div>");
+                  items1.push("<div class=\"modal-body\" id=\"modal-body"+key+"\">");
+                  items1.push(val["description"]);
+                  items1.push("</div>");
+                  items1.push("<div class=\"modal-footer\">");
+                  items1.push("  <div class=\"stars\" id=\"stars\""+key+">\n" +
+                          "    <form action=\"\">\n" +
+                          "      <input class=\"star star-5\" id=\"star-5\" type=\"radio\" name=\"star\"/>\n" +
+                          "      <label class=\"star star-5\" for=\"star-5\"></label>\n" +
+                          "      <input class=\"star star-4\" id=\"star-4\" type=\"radio\" name=\"star\"/>\n" +
+                          "      <label class=\"star star-4\" for=\"star-4\"></label>\n" +
+                          "      <input class=\"star star-3\" id=\"star-3\" type=\"radio\" name=\"star\"/>\n" +
+                          "      <label class=\"star star-3\" for=\"star-3\"></label>\n" +
+                          "      <input class=\"star star-2\" id=\"star-2\" type=\"radio\" name=\"star\"/>\n" +
+                          "      <label class=\"star star-2\" for=\"star-2\"></label>\n" +
+                          "      <input class=\"star star-1\" id=\"star-1\" type=\"radio\" name=\"star\"/>\n" +
+                          "      <label class=\"star star-1\" for=\"star-1\"></label>\n" +
+                          "    </form>\n" +
+                          "  </div>");
+                  items1.push("<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>");
+                  items1.push("<div class=\"mapbutton"+key+"\">");
+                  items1.push("<button type=\"button\" class=\"btn btn-primary\" onclick=\"openMap("+key+")\">Open map</button>");
+                  items1.push("</div>");
+                  items1.push("</div>");
+                  items1.push("</div>");
+                  items1.push("</div>");
+                  items1.push("</div>");
+
+                  counterliked = counterliked + 1;
+              } else if (isliked == 0) {
+                  //console.log("Is not liked");
+                  items2.push("<div class=\"card mb-4 shadow-sm\">");
+                  items2.push("<img class=\"card-img-top\" data-src=\"");
+                  items2.push(val["imageurl"]);
+                  items2.push("\" alt=\"Thumbnail [100%x225]\" style=\"height: 225px; width: 100%; display: block;\" src=\"");
+                  items2.push(val["imageurl"]);
+                  items2.push("\"(data-holder-rendered=\"true\">");
+                  items2.push("<div class=\"card-body\">");
+                  items2.push("<p class=\"card-text\">");
+                  items2.push(val["name"]);
+                  items2.push("</p>");
+                  items2.push("<div class=\"d-flex justify-content-between align-items-center\">");
+                  items2.push("<div class=\"btn-group\">");
+                  items2.push("<button type=\"button\" class=\"btn btn-sm btn-outline-secondary\" data-toggle=\"modal\" data-target=\"#exampleModal");
+                  items2.push(key);
+                  items2.push("\">Show info</button><br>");
+                  items2.push("</div>");
+                  items2.push("<a class=\"btn\" href=\"likemonument?usr=${username}&mon="+val["name"]+"\"><i class=\"far fa-heart\"></i></a>");
+                  items2.push("<small class=\"text-muted\" id=\"distance"+key+"\">"+val["lat"]+"ºN, "+val["lon"]+"ºE</small>");
+                  items2.push("</div>");
+                  items2.push("</div>");
+                  items2.push("</div>");
+
+                  items2.push("<div class=\"modal fade\" id=\"exampleModal");
+                  items2.push(key);
+                  items2.push("\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">");
+                  items2.push("<div class=\"modal-dialog\" role=\"document\">");
+                  items2.push("<div class=\"modal-content\">");
+                  items2.push("<div class=\"modal-header\">");
+                  items2.push("<h5 class=\"modal-title\" id=\"exampleModalLabel\">");
+                  items2.push(val["name"]);
+                  items2.push("</h5>");
+                  items2.push("<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">");
+                  items2.push("<span aria-hidden=\"true\">&times;</span>");
+                  items2.push("</button>");
+                  items2.push("</div>");
+                  items2.push("<div class=\"modal-body\" id=\"modal-body"+key+"\">");
+                  items2.push(val["description"]);
+                  items2.push("</div>");
+                  items2.push("<div class=\"modal-footer\">");
+                  items2.push("  <div class=\"stars\" id=\"stars\""+key+">\n" +
+                          "    <form action=\"\">\n" +
+                          "      <input class=\"star star-5\" id=\"star-5\" type=\"radio\" name=\"star\"/>\n" +
+                          "      <label class=\"star star-5\" for=\"star-5\"></label>\n" +
+                          "      <input class=\"star star-4\" id=\"star-4\" type=\"radio\" name=\"star\"/>\n" +
+                          "      <label class=\"star star-4\" for=\"star-4\"></label>\n" +
+                          "      <input class=\"star star-3\" id=\"star-3\" type=\"radio\" name=\"star\"/>\n" +
+                          "      <label class=\"star star-3\" for=\"star-3\"></label>\n" +
+                          "      <input class=\"star star-2\" id=\"star-2\" type=\"radio\" name=\"star\"/>\n" +
+                          "      <label class=\"star star-2\" for=\"star-2\"></label>\n" +
+                          "      <input class=\"star star-1\" id=\"star-1\" type=\"radio\" name=\"star\"/>\n" +
+                          "      <label class=\"star star-1\" for=\"star-1\"></label>\n" +
+                          "    </form>\n" +
+                          "  </div>");
+                  items2.push("<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>");
+                  items2.push("<div class=\"mapbutton"+key+"\">");
+                  items2.push("<button type=\"button\" class=\"btn btn-primary\" onclick=\"openMap("+key+")\">Open map</button>");
+                  items2.push("</div>");
+                  items2.push("</div>");
+                  items2.push("</div>");
+                  items2.push("</div>");
+                  items2.push("</div>");
+              }
+
+              counter = counter + 1;
+
+              if (counter == sizedata) {
+
+                  if (counterliked != 0) {
+                      $(".containerfotosliked").append("<h3>Monuments you have liked:</h3><p></p><br>");
+                  }
+
+                  $("<div>", {
+                      "class": "containerfotosliked",
+                      html: items1.join("")
+                  }).appendTo(".containerfotosliked");
+
+                  $("<div>", {
+                      "class": "containerfotos",
+                      html: items2.join("")
+                  }).appendTo(".containerfotos");
+              }
+          });
+      });
+    });
+
 	function getLocation() {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition);
-		} else {
-			alert("Geolocation is not supported by this browser.");
-		}
+        if (navigator.geolocation) {
+
+            navigator.permissions.query({name: 'geolocation'}).then(function(status) {
+                console.log(status);
+                if(status.state == "prompt"){
+                    $(".geolocation").html("<p class=\"lead text-danger\">We currently <strong>DO NOT</strong> have your location. Please allow geolocation in your browser to show your distance to the monuments.</p><br>");
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else if (status.state == "granted") {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                }
+            });
+
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
 	}
+
+	getLocation();
 	
 	function showPosition(position) {
-		var x = "Latitude: " + position.coords.latitude + 
-		"<br>Longitude: " + position.coords.longitude;
-		alert(x);
+        $(".geolocation").html("<p class=\"lead text-success\"><strong>Your current location is: "+position.coords.latitude.toFixed(3)+"ºN, "+position.coords.longitude.toFixed(3)+" ºE</strong></p><br>");
+		getDistance(position.coords.latitude, position.coords.longitude);
 	}
+
+    function getDistance(lat1,lon1) {
+        $.each( globaldata, function( key, val ) {
+            var lat2 = parseFloat(val["lat"]);
+            var lon2 = parseFloat(val["lon"]);
+
+            var R = 6371; // Radius of the earth in km
+            var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+            var dLon = deg2rad(lon2 - lon1);
+
+            var a =
+                    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+                    Math.sin(dLon / 2) * Math.sin(dLon / 2)
+            ;
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var d = R * c; // Distance in km
+
+			if (d <= 1) {
+                $("#distance" + key).html((d * 1000).toFixed(1) + " m <br>" + val["lat"] + "ºN, " + val["lon"] + "ºE");
+            } else {
+                $("#distance" + key).html(d.toFixed(2) + " km <br>" + val["lat"] + "ºN, " + val["lon"] + "ºE");
+			}
+        });
+    }
+
+    function deg2rad(deg) {
+        return deg * (Math.PI/180)
+    }
+
+    function openMap(key){
+	    var name = globaldata[key]["name"]
+		var lat = globaldata[key]["lat"];
+		var lon = globaldata[key]["lon"];
+
+		$("#modal-body"+key).html("<div class=\"iframe-rwd\">\n" +
+				"<iframe width=\"425\" height=\"350\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\" src=\"https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q="+name+"&amp;aq=0&amp;&amp;sll="+lat+","+lon+"&amp;t=h&amp;ie=UTF8&amp;hq=&amp;z=16&amp;ll="+lat+","+lon+"&amp;output=embed\"></iframe><br /><small>" +
+				"<a href=\"https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;sll=37.822293,-85.76824&amp;sspn=6.628688,16.907959\" style=\"color:#0000FF;text-align:left\">View Larger Map</a></small>\n" +
+                "</div>");
+
+		$(".mapbutton"+key).html("<button type=\"button\" class=\"btn btn-primary\" onclick=\"closeMap("+key+")\">Close map</button>");
+	}
+
+	function closeMap(key){
+	    var desc = globaldata[key]["description"];
+        $("#modal-body"+key).html(desc);
+        $(".mapbutton"+key).html("<button type=\"button\" class=\"btn btn-primary\" onclick=\"openMap("+key+")\">Open map</button>");
+	}
+
 	</script>
 
 <svg xmlns="http://www.w3.org/2000/svg" width="348" height="225" viewBox="0 0 348 225" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="17" style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text></svg></body></html>

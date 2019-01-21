@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="@{'/public/images/icons/favicon.ico'}">
 
-    <title>Register - MonumentFinder</title>
+    <title>Account - MonumentFinder</title>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -22,24 +22,25 @@
 
   <body class="text-center">
   <div id="container" class="container">
-    #{form @Application.accountmanager(a,u,e,p,p,m,g)}
+    #{form @Application.accountmanager(a,u,e,p,np,m,g)}
     <form class="form-signin">
-        <img class="mb-4" src="@{'/public/images/logo.png'}" alt="" width="100" height="100">
-        <h1 class="h3 mb-3 font-weight-normal">Register here</h1>
-        <input name="a" id="actionType" class="form-control" value="0" type="hidden">
+        <!--<img class="mb-4" src="@{'/public/images/logo.png'}" alt="" width="10" height="10">-->
+        <h1 class="h3 mb-3 font-weight-normal">Edit your account</h1><br>
+        <input name="a" id="actionType" class="form-control" value="1" type="hidden">
+        <input name="u" id="inputUsername" class="form-control" value="${username}" type="hidden">
+
+        <div class="alert alert-info" role="alert">${message}</div>
 
         <label for="inputUsername" class="sr-only">Username</label>
-        <input name="u" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="">
-
+        <input id="inputUsername" class="form-control" placeholder="Username" value="${username}" required="" disabled>
         <label for="inputEmail" class="sr-only">Email</label>
-        <input name="e" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="">
-
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input name="p" id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
-
+        <input name="e" id="inputEmail" class="form-control" placeholder="Email" value="${email}" required="">
+        <label for="inputPassword" class="sr-only">Old password</label>
+        <input name="p" id="inputPassword" class="form-control" placeholder="Old password" required="" autofocus="" type="password">
+        <label for="inputPasswordNew" class="sr-only">New password</label>
+        <input name="np" id="inputPasswordNew" class="form-control" placeholder="New password" required="" autofocus="" type="password">
         <label for="inputPhone" class="sr-only">Mobile phone</label>
-        <input name="m" id="inputPhone" class="form-control" placeholder="Mobile phone" required="" autofocus=""><br>
-
+        <input name="m" id="inputPhone" class="form-control" placeholder="Mobile phone" value="${mobil}" required=""><br>
         <p><strong>Tell us what you love:</strong></p>
         <div class="form-group">
             <label for="preferences" class="sr-only">Tell us what you love</label>
@@ -53,7 +54,8 @@
             </select>
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Update user</button><br>
+        <a href="delete?username=${username}"><button class="btn btn-lg btn-danger btn-block" type="submit">Delete user</button></a><br>
         <p class="mt-5 mb-3 text-muted"><strong>MonumentFinder</strong> © 2019</p>
     </form>
     #{/form}

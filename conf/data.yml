@@ -180,7 +180,7 @@ models.Monument(parcTibid):
     lat: 41.42258
     lon: 2.12005
     cat: theme park
-    param: Entretainment
+    param: Entertainment
     city: BCN
     description: Tibidabo Amusement Park is an amusement park located on Tibidabo in the Collserola Ridge in Barcelona. The park was built in 1899. The park is among the oldest in the world still functioning.
     imageurl: https://www.globo-rojo.com/wp-content/uploads/BLOG-Tibidabo1.jpg
@@ -190,7 +190,7 @@ models.Monument(palauSJ):
     lat: 41.36347
     lon: 2.15357
     cat: building
-    param: Entretainment
+    param: Entertainment
     city: BCN
     description: Palau Sant Jordi ("St. George's Palace") is an indoor sporting arena and multi-purpose installation that is part of the Olympic Ring complex located in Barcelona.
     imageurl: https://www.palausantjordi.cat/typo3temp/yag/28/Panoramica_interior_event_Palau_Sant_Jordi_2801_560d7f10de5.jpg

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="@{'/public/images/icons/favicon.ico'}">
+
+    <title>Delete user - MonumentFinder</title>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="@{'/public/stylesheets/signin.css'}" rel="stylesheet">
+
+    <link href="@{'/public/stylesheets/bootstrap-multiselect.css'}" rel="stylesheet">
+    <script src="@{'/public/js/bootstrap-multiselect.js'}"></script>
+  </head>
+
+  <body class="text-center">
+  <div id="container" class="container">
+    #{form @Application.removeUser(u, p)}
+    <form class="form-signin">
+        <img class="mb-4" src="@{'/public/images/logo.png'}" alt="" width="100" height="100">
+        <h1 class="h3 mb-3 font-weight-normal">Are you sure you want to delete your user?</h1><br>
+
+        <div class="alert alert-info" role="alert">${message}</div><br>
+
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input name="u" id="inputUsername" class="form-control" value="${username}" type="hidden">
+        <input id="inputUsername2" class="form-control" placeholder="${username}" required="" autofocus="" disabled>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input name="p" id="inputPassword" class="form-control" placeholder="Password" required="" type="password"><br>
+
+        <button class="btn btn-lg btn-danger btn-block" type="submit">Yes, delete it</button><br>
+        <p class="mt-5 mb-3 text-muted"><strong>MonumentFinder</strong> © 2019</p>
+    </form>
+    #{/form}
+	</div>
+</body></html>
